@@ -20,7 +20,9 @@ class DriverBusiness {
      * @params {number} driver_id
      */
     startMotion(driver_id: number, socket: any): void {
-        const drivers = JSON.parse(fs.readFileSync(process.cwd() + '/src/api/data/drivers.json', 'utf8'));
+        const filePath = process.cwd() + '/src/api/data/drivers.json';
+        if (!fs.existsSync(filePath)) throw 'file with data does not exist';
+        const drivers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
         const index = drivers.findIndex((d) => d.id === driver_id);
         if (index === -1) throw 'Invalid driver id is supplied';
         if (!socket || !socket.emit) throw 'Socket is not supplied';
