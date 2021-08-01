@@ -12,9 +12,9 @@ A service built to update the location of the driver and fetch the driver inform
     -   Input Json
 
 ```json
-    {
-    "driver_id": 1, (should be a valid driver id (number))
-    }
+{
+    "driver_id": 1
+}
 ```
 
 -   Json response
