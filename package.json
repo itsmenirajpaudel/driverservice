@@ -1,0 +1,47 @@
+{
+  "name": "driverservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc && ts-node-dev dist/src/server.js",
+    "dev": "ts-node-dev src/server.ts",
+    "build:prod": "tsc -p . && cp -r ./src/views ./dist/src/views",
+    "lint": "eslint '*/**/*.{ts,tsx}'",
+    "lint:fix": "eslint '*/**/*.{ts,tsx}' --quiet --fix",
+    "lint:staged": "lint-staged",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "pre-commit": "lint:staged",
+  "lint-staged": {
+    "*/**/*.{ts,tsx}": [
+      "eslint --quiet --fix"
+    ]
+  },
+  "author": "Niraj Paudel",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@types/node": "^14.0.27",
+    "@typescript-eslint/eslint-plugin": "^3.2.0",
+    "@typescript-eslint/parser": "^3.2.0",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "jest": "^26.0.1",
+    "jest-mock-process": "^1.4.0",
+    "lint-staged": "^10.2.11",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.1.3"
+  }
+}
