@@ -1,6 +1,6 @@
 # driver-service
 
-A service built to update the location of the driver and fetch the driver information
+A service built to update the location of the driver and fetch the driver information using nodejs and typescript
 
 ## Available endpoints
 
@@ -9,7 +9,7 @@ A service built to update the location of the driver and fetch the driver inform
     -   The driver id must be provided in the body
     -   Once the api is triggered, the web-socket will start and it will update location of driver every 5 seconds
     -   As a data source, currently a dummy JSON file is used (which holds 4 Drivers Info)
-    -   Input Json
+-   Input Json
 
 ```json
 {
