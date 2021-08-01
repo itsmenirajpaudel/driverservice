@@ -79,7 +79,7 @@ A service built to update the location of the driver and fetch the driver inform
 2. Run
    `docker-compose up`
 
-3.Once the project is up and running the
+3. Once the project is up and running the
 
 -   service will be accessible at http://localhost:8085
 
