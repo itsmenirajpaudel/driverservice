@@ -89,7 +89,7 @@ A service built to update the location of the driver and fetch the driver inform
 
 `npm run build`
 
-### Running the Unit test
+### Running the Unit test [using jest]
 
 `npm run test`
 
