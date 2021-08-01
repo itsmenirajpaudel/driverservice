@@ -16,21 +16,21 @@ interface IDriver {
  */
 class DriverBusiness {
     /**
-     * Start the motion
-     * @params {number} driver_id
+     * Start the motions
+     * @params {any} socket
      */
-    startMotion(driver_id: number, socket: any): void {
+    startMotions(socket: any): void {
         const filePath = process.cwd() + '/src/api/data/drivers.json';
         if (!fs.existsSync(filePath)) throw 'file with data does not exist';
         const drivers = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-        const index = drivers.findIndex((d) => d.id === driver_id);
-        if (index === -1) throw 'Invalid driver id is supplied';
         if (!socket || !socket.emit) throw 'Socket is not supplied';
 
-        setInterval(function () {
-            drivers[index].latlng = generateRandomLatLng();
-            fs.writeFileSync(process.cwd() + '/src/api/data/drivers.json', JSON.stringify(drivers));
-            socket.emit('driver_' + driver_id, `${drivers[index].latlng[0]}, ${drivers[index].latlng[1]}`);
+        global['socketInterval'] = setInterval(function () {
+            for (const index in drivers) {
+                drivers[index].latlng = generateRandomLatLng();
+                fs.writeFileSync(process.cwd() + '/src/api/data/drivers.json', JSON.stringify(drivers));
+                socket.emit('driver_' + drivers[index].id, JSON.stringify(drivers[index]));
+            }
         }, 5000);
     }
 

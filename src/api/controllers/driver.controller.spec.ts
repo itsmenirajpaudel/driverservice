@@ -25,30 +25,17 @@ const mockResponse = () => {
 /**
  * Unit test for driver controller - start motion method
  */
-describe('startMotion', () => {
+describe('startMotions', () => {
     const req = mockRequest();
     const res = mockResponse();
 
-    it('should throw error if driver id is not supplied in body', () => {
-        req.body = {};
-        (driverBusiness.startMotion as any) = jest.fn(() => {
-            return null;
-        });
-        (logger.error as any) = jest.fn();
-        driverController.startMotion(req, res);
-        expect(res.status).toHaveBeenCalled();
-        expect(logger.error).toHaveBeenCalledWith(
-            JSON.stringify({ success: false, error: 'Insufficient parameters', status: 500 }) + '\n',
-        );
-    });
-
     it('should throw error if business function throws error', () => {
         req.body = { driver_id: 1 };
-        (driverBusiness.startMotion as any) = jest.fn(() => {
+        (driverBusiness.startMotions as any) = jest.fn(() => {
             throw 'Oops!!';
         });
         (logger.error as any) = jest.fn();
-        driverController.startMotion(req, res);
+        driverController.startMotions(req, res);
 
         expect(res.status).toHaveBeenCalled();
         expect(logger.error).toHaveBeenCalled();
@@ -59,10 +46,10 @@ describe('startMotion', () => {
         req.app.get = function () {
             return 'test';
         };
-        (driverBusiness.startMotion as any) = jest.fn(() => {
+        (driverBusiness.startMotions as any) = jest.fn(() => {
             return;
         });
-        driverController.startMotion(req, res);
+        driverController.startMotions(req, res);
         expect(res.send).toHaveBeenCalled();
     });
 });

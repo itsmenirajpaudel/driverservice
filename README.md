@@ -4,17 +4,14 @@ A service built to update the location of the driver and fetch the driver inform
 
 ## Available endpoints
 
--   POST /v1/start-motion
+-   POST /v1/start-motions
     -   API to initiate the motion for particular driver
-    -   The driver id must be provided in the body
-    -   Once the api is triggered, the web-socket will start and it will update location of driver every 5 seconds
+    -   Once the api is triggered, the web-socket will start and it will update location of drivers every 5 seconds
     -   As a data source, currently a dummy JSON file is used (which holds 4 Drivers Info)
 -   Input Json
 
 ```json
-{
-    "driver_id": 1
-}
+{}
 ```
 
 -   Json response
@@ -22,7 +19,7 @@ A service built to update the location of the driver and fetch the driver inform
 ```json
 {
     "success": true,
-    "message": "Motion of the driver 1 is started..."
+    "message": "Motions of the drivers are started..."
 }
 ```
 

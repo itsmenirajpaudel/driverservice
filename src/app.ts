@@ -4,21 +4,16 @@
 import morgan from 'morgan';
 import express from 'express';
 import * as bodyParser from 'body-parser';
-import process, { nextTick } from 'process';
+import process from 'process';
 /**
  * Internal dependencies: routes
  */
 import v1Routes from './api/routes/v1';
-import logger from './api/helpers/logger-helper';
 
 /**
  * Create the application
  */
 const app: express.Application = express();
-
-interface ErrorWithStatus extends Error {
-    status?: number;
-}
 
 /**
  * Add middlewares

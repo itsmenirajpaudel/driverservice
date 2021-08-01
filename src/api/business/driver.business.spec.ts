@@ -3,19 +3,11 @@ import driverBusiness from './driver.business';
 /**
  * Unit tests for startMotion method
  */
-describe('startMotion', () => {
-    it('should throw error in case of invalid driver id supplied', () => {
-        try {
-            driverBusiness.startMotion(1000, {});
-        } catch (error) {
-            expect(error).toEqual('Invalid driver id is supplied');
-        }
-    });
-
+describe('startMotions', () => {
     it('should throw error in case of proper socket instance is null', () => {
         const output = 'Socket is not supplied';
         try {
-            driverBusiness.startMotion(1, null);
+            driverBusiness.startMotions(null);
         } catch (error) {
             expect(error).toEqual(output);
         }
@@ -23,7 +15,7 @@ describe('startMotion', () => {
 
     it('should call set-timeout method on valid inputs', () => {
         jest.useFakeTimers();
-        driverBusiness.startMotion(1, {
+        driverBusiness.startMotions({
             emit: function () {
                 console.log('niraj');
             },

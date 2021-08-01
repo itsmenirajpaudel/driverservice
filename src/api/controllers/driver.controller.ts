@@ -13,19 +13,18 @@ import logger from '../helpers/logger-helper';
  * Controller for Drivers
  */
 class DriverController {
+  
     /**
-     * Start motion for a particular driver
+     * Start motions for all drivers
      * @param req:Request
      * @param res:Response
      */
-    async startMotion(req: Request, res: Response): Promise<any> {
+    async startMotions(req: Request, res: Response): Promise<any> {
         try {
-            const { body: model } = req;
-            if (!model.driver_id) throw 'Insufficient parameters';
             const socket = req.app.get('io');
             if (!socket) throw 'socket is not set';
-            driverBusiness.startMotion(parseInt(model.driver_id + '', 10), socket);
-            res.send({ success: true, message: `Motion of the driver ${model.driver_id} has started...` });
+            driverBusiness.startMotions(socket);
+            res.send({ success: true, message: `Motion of the drivers has started...` });
         } catch (error) {
             const status = 500;
             const returnVal = { success: false, error: error, status };

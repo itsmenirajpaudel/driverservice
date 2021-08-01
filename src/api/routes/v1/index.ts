@@ -18,7 +18,8 @@ router.get('/service/health', (_req: express.Request, res: express.Response) => 
  * For demo, it is not used
  **/
 
-router.post('/start-motion', driverController.startMotion); //trigger continuous motion
+router.post('/start-motions', driverController.startMotions); //trigger continuous motion all drivers
+
 router.get('/driver/:driverid', driverController.get); //driver with id
 router.get('/drivers', driverController.get); //all drivers records
 

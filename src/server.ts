@@ -6,8 +6,19 @@ import { PORT } from './settings';
 const server = http.createServer(app);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST'],
+    },
+});
 
+io.on('connection', (socket) => {
+    socket.on('end', function () {
+        if (global['socketInterval']) clearInterval(global['socketInterval']);
+        socket.disconnect(true);
+    });
+});
 // set socket instance in app
 app.set('io', io);
 
